@@ -130,7 +130,7 @@ SOE.prototype.getWidgetCode = function() {
     <div align="left" style="float:left;width:80%"><img src=' +'"' + EbeecareStaticFilesUrl  +  'ebk2.png" ></div>' +
         '<div id="EBKWidgetToggle" style="' + openCloseHolderClass + '" >+</div></div></a>';
     this.code += '<div id="EBKWidgetContent" style="height:100%;display:none;margin-top:0.7em;box-sizing:content-box;">';
-    this.contactUsDiv = '<div align="left" style="float:left;width:80%"><img src="ebk2.png" >' +
+    this.contactUsDiv = '<div align="left" style="float:left;width:80%"><img src="' + EbeecareStaticFilesUrl + 'ebk2.png" >' +
         '</div><div style="' + openCloseHolderClass +
         '" >+</div>';
     this.divMobileTitle = mLeftValue + mWidgetHeadStyle + 'display:none;"';
