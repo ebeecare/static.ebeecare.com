@@ -1056,6 +1056,11 @@ try {
 }
 
 function receiveMessage(event) {
+    if(event.data == "closeebkwidget"){
+        document.getElementById("SOI_getso").setAttribute("src", EbeecareEmbedLink);
+        soe.toggleLightBox('getso');
+        return;
+    }
     if (event.origin.indexOf("ebeecare") < 0 && (event.origin.indexOf("staticso") < 0 && (event.origin.indexOf("booknow.so") < 0 && (event.origin.indexOf("meetme.so") < 0 && event.origin.indexOf("bookme.so") < 0))))
         return false;
     var tmp = event.data.toString();
