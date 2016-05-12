@@ -111,7 +111,7 @@ SOE.prototype.getConfirmBoxCode = function(){
    <h2 style="margin-top: 0;font-weight: 400;display: block;font-size: 1.8em;-webkit-margin-before: 0.83em;-webkit-margin-after: 0.83em;-webkit-margin-start: 0px;\
     -webkit-margin-end: 0px;text-align: center;color: #444;font-family: Proxima Nova,sans-serif;">Confirmation</h2>\
    <div><span style="line-height: 1.4em; text-align: center;font-size: 21px;    color: #444;font-family: Proxima Nova,sans-serif;\
-      ">Cofirm leaving here,will lose the all the data you has input, are you sure</span></div>\
+      ">You will lose all keyed in information if you close this window.Are you sure you want to close?</span></div>\
    <div style="text-align: center;margin: 20px 0; display: block;">\
       <a onclick="soe.yesLeave()" style="margin: 5px;color: #fff;width: 150px;font-size: 21px;padding: .25em 0;display: inline-block;background-color: #f78d00;text-decoration: none;    border: 0;text-align: center;text-rendering: optimizeLegibility;-webkit-font-smoothing: antialiased;cursor: pointer;" id="EbkExitOk">Yes</a>\
       <a onclick="soe.notLeave()" style="margin: 5px;color: #fff;width: 150px;font-size: 21px;padding: .25em 0;display: inline-block;background-color: #f78d00;text-decoration: none;    border: 0;text-align: center;text-rendering: optimizeLegibility;-webkit-font-smoothing: antialiased;cursor: pointer;" id="EbkExitCancel">No</a>\
