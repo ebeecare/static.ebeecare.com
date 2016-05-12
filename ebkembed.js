@@ -99,6 +99,43 @@ SOE.prototype.setLightBoxCode = function(isParameterized) {
     }
 };
 
+SOE.prototype.getConfirmBoxCode = function(){
+    var eleCB = document.getElementById("EbkExitDialog");
+    if(eleCB == null || eleCB === "undefined"){
+        eleCB = document.createElement("div");
+        eleCB.id = "EbkExitDialog";
+        eleCB.style.display = "none";
+        eleCB.innerHTML = '<div style="z-index:10000000002;box-sizing:border-box;width:25%;margin-left:-12.5%;height:auto;margin-top:0;top:100px;text-align:center;display:block;position: fixed;left: 50%;background-color: #fff;border-radius: 2px;z-index: 100;padding: 15px;box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);">'
+   + '<a id="ebxconfirmclose" onclick="soe.notLeave()" style="cursor: pointer;position: absolute;font-size: 2.2em;right: 10px;top: 0;background-color: transparent;text-align: center;"\
+   >×</a>\
+   <h2 style="margin-top: 0;font-weight: 400;display: block;font-size: 1.8em;-webkit-margin-before: 0.83em;-webkit-margin-after: 0.83em;-webkit-margin-start: 0px;\
+    -webkit-margin-end: 0px;text-align: center;color: #444;font-family: Proxima Nova,sans-serif;">Confirmation</h2>\
+   <div><span style="line-height: 1.4em; text-align: center;font-size: 21px;    color: #444;font-family: Proxima Nova,sans-serif;\
+      ">Cofirm leaving here,will lose the all the data you has input, are you sure</span></div>\
+   <div style="text-align: center;margin: 20px 0; display: block;">\
+      <a onclick="soe.yesLeave()" style="margin: 5px;color: #fff;width: 150px;font-size: 21px;padding: .25em 0;display: inline-block;background-color: #f78d00;text-decoration: none;    border: 0;text-align: center;text-rendering: optimizeLegibility;-webkit-font-smoothing: antialiased;cursor: pointer;" id="EbkExitOk">Yes</a>\
+      <a onclick="soe.notLeave()" style="margin: 5px;color: #fff;width: 150px;font-size: 21px;padding: .25em 0;display: inline-block;background-color: #f78d00;text-decoration: none;    border: 0;text-align: center;text-rendering: optimizeLegibility;-webkit-font-smoothing: antialiased;cursor: pointer;" id="EbkExitCancel">No</a>\
+   </div>\
+</div>';
+     var parent = document.getElementById("EekPopContainer");
+     parent.appendChild(eleCB);
+    }
+};
+
+SOE.prototype.yesLeave = function(){
+    var eleCB = document.getElementById("EbkExitDialog");
+    eleCB.style.display = "none";
+    document.getElementById("SOI_getso").setAttribute("src", EbeecareEmbedLink);
+    this.toggleLightBox('getso');
+};
+
+SOE.prototype.notLeave = function(){
+    var eleCB = document.getElementById("EbkExitDialog");
+    eleCB.style.display = "none";
+};
+
+
+
 SOE.prototype.getWidgetCode = function() {
     var mCalcLeft = this.calcWindowLeft + 250;
     var fontsizeOpenClose = "1.19em";
@@ -136,7 +173,8 @@ SOE.prototype.getWidgetCode = function() {
     this.divMobileTitle = mLeftValue + mWidgetHeadStyle + 'display:none;"';
     if (this.bookingPos == 1)
         this.code += this.bookingCode + "</div>";
-    this.setLightBoxCode()
+    this.setLightBoxCode();
+    this.getConfirmBoxCode();
 };
 SOE.prototype.setWidgetHTML = function() {
     this.getBookingCode();
@@ -259,6 +297,12 @@ SOE.prototype.toggleDiv = function(id, obj, hideOnly) {
         }
     }
 };
+
+SOE.prototype.triggerEBKConfirm = function(){
+    var eleCB = document.getElementById("EbkExitDialog");
+    eleCB.style.display = "block";    
+}
+
 SOE.prototype.toggleLightBox = function(page) {
     var ieversion = soe.getIEVersion();
     if (this.isMobileView || ieversion < 9) {
@@ -381,6 +425,9 @@ SOE.prototype.toggleLightBox = function(page) {
         }
     }
 };
+
+
+
 SOE.prototype.getIframeHTMLCode = function(_pageLink, isParameterized) {
     var h = "100%";
     var w = "90%";
@@ -388,8 +435,8 @@ SOE.prototype.getIframeHTMLCode = function(_pageLink, isParameterized) {
     var ver = "";
     var style = "border:solid 3px #FFF;background-color:#FFF;";
     var pre = '<div id="SOIC_' + this.pageName.replace(/'/g, "") + '" style="padding: 0px; z-index:100000002; margin: 0px; width: 24px;height: 24px; background-color: #000; border: solid 2px #FFF;color:#FFF;font-size: 18px;font-weight: bold;font-family: tahoma; -webkit-border-radius: 14px; border-radius: 14px; position: absolute; top: 0px; text-align:center; line-height:23px;cursor:pointer;box-sizing:content-box;' + (this.isMobileView ?
-        "right:-1.5em;" : "right:-17px;") + '" onclick="soe.toggleLightBox(' + this.pageName + ')">X</div>';
-    pre = '<div align="center" style="height:100%; padding-top: 15px; padding-right: 15px; box-sizing: border-box; overflow: hidden;">' + pre;
+        "right:-1.5em;" : "right:-17px;") + '" onclick="soe.triggerEBKConfirm()">X</div>';
+    pre = '<div align="center" id="EekPopContainer" style="height:100%; padding-top: 15px; padding-right: 15px; box-sizing: border-box; overflow: hidden;">' + pre;
     var post = "";
     if (!this.isMobileView) {
         h = "535px";
