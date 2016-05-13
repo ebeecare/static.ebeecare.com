@@ -1068,7 +1068,7 @@ function receiveMessage(event) {
         soe.toggleLightBox('getso');
         return;
     } else if(event.data == "completedBooking"){
-        soe.completed = true;
+        soe.bookingOnceCompleted = true;
         return;
     }
     if (event.origin.indexOf("ebeecare") < 0 && (event.origin.indexOf("staticso") < 0 && (event.origin.indexOf("booknow.so") < 0 && (event.origin.indexOf("meetme.so") < 0 && event.origin.indexOf("bookme.so") < 0))))
