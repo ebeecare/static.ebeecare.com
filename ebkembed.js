@@ -12,7 +12,9 @@ var EbeecareEmbedWidgetLeft = "right";
 var EbeecareEmbedPageName = "'getso'";
 var EbeecareStaticFilesUrl = "http://static.ebeecare.com/";
 
+
 var SOE = function() {
+    this.bookingOnceCompleted = false;
     this.bookingPos = 1;
     this.phonePos = 2;
     this.link;
@@ -299,6 +301,11 @@ SOE.prototype.toggleDiv = function(id, obj, hideOnly) {
 };
 
 SOE.prototype.triggerEBKConfirm = function(){
+    if(this.bookingOnceCompleted == true){
+        this.yesLeave();
+        this.bookingOnceCompleted = false;
+        return;
+    }
     var eleCB = document.getElementById("EbkExitDialog");
     eleCB.style.display = "block";    
 }
@@ -1059,6 +1066,9 @@ function receiveMessage(event) {
     if(event.data == "closeebkwidget"){
         document.getElementById("SOI_getso").setAttribute("src", EbeecareEmbedLink);
         soe.toggleLightBox('getso');
+        return;
+    } else if(event.data == "completedBooking"){
+        soe.completed = true;
         return;
     }
     if (event.origin.indexOf("ebeecare") < 0 && (event.origin.indexOf("staticso") < 0 && (event.origin.indexOf("booknow.so") < 0 && (event.origin.indexOf("meetme.so") < 0 && event.origin.indexOf("bookme.so") < 0))))
